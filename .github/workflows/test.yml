@@ -10,7 +10,7 @@ jobs:
       issues: 'write'
     steps:
       - name: Create issue
-        uses: jku/create-issue/.github/actions/create-issue@main
+        uses: jku/create-issue/.github/actions/open-workflow-issue@main
 
   close:
     runs-on: ubuntu-latest
@@ -19,4 +19,4 @@ jobs:
       issues: 'write'
     steps:
       - name: Close issue
-        uses: jku/create-issue/.github/actions/close-issue@main
+        uses: jku/create-issue/.github/actions/close-workflow-issue@main

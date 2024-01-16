@@ -1,0 +1,22 @@
+name: Test create-issue and close-issue
+
+on:
+  workflow_dispatch
+
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: 'write'
+    steps:
+      - name: Create issue
+        uses: jku/create-issue/.github/actions/create-issue@main
+
+  close:
+    runs-on: ubuntu-latest
+    needs: [create]
+    permissions:
+      issues: 'write'
+    steps:
+      - name: Close issue
+        uses: jku/create-issue/.github/actions/close-issue@main

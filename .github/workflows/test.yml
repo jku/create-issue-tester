@@ -10,12 +10,26 @@ jobs:
       issues: 'write'
       actions: 'read'
     steps:
-      - name: Create issue
+      - name: Create issue on failure
         uses: sigstore/sigstore-probers/.github/actions/open-workflow-issue@main
+        with:
+          comment_for_each_failure: true
+
+  create-another:
+    runs-on: ubuntu-latest
+    needs: [create]
+    permissions:
+      issues: 'write'
+      actions: 'read'
+    steps:
+      - name: Create issue on failure
+        uses: sigstore/sigstore-probers/.github/actions/open-workflow-issue@main
+        with:
+          comment_for_each_failure: true
 
   close:
     runs-on: ubuntu-latest
-    needs: [create]
+    needs: [create-another]
     permissions:
       issues: 'write'
       actions: 'read'

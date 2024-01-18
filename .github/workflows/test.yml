@@ -12,6 +12,7 @@ jobs:
 
   create:
     runs-on: ubuntu-latest
+    needs: [failing-job]
     if: failure()
     permissions:
       issues: 'write'

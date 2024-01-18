@@ -10,9 +10,15 @@ jobs:
       - run: |
           false
 
+  succeeding-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          true
+
   create:
     runs-on: ubuntu-latest
-    needs: [failing-job]
+    needs: [failing-job, succeeding-job]
     if: failure()
     permissions:
       issues: 'write'

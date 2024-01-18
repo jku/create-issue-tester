@@ -4,8 +4,15 @@ on:
   workflow_dispatch
 
 jobs:
+  failing-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          false
+
   create:
     runs-on: ubuntu-latest
+    if: failure()
     permissions:
       issues: 'write'
       actions: 'read'

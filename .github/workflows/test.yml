@@ -4,22 +4,29 @@ on:
   workflow_dispatch
 
 jobs:
-  failing-job:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          false
-
   succeeding-job:
     runs-on: ubuntu-latest
     steps:
       - run: |
           true
 
+  succeeding-job2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          true
+
+  failing-job:
+    runs-on: ubuntu-latest
+    needs: [succeeding-job2]
+    steps:
+      - run: |
+          false
+
   create:
     runs-on: ubuntu-latest
-    needs: [failing-job, succeeding-job]
-    if: always() && contains(needs.*.result, 'failure')
+    needs: [failing-job, succeeding-job, succeeding-job2]
+    if: failure()
     permissions:
       issues: 'write'
       actions: 'read'

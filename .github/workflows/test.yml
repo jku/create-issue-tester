@@ -24,7 +24,7 @@ jobs:
       issues: 'write'
       actions: 'read'
     env:
-      NEEDS: ${{ needs.*.result }}
+      NEEDS:  ${{ toJSON(needs.*.result) }}
     steps:
       - run: echo "NEEDS $NEEDS"
       - name: Create issue on failure

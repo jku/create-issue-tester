@@ -23,7 +23,10 @@ jobs:
     permissions:
       issues: 'write'
       actions: 'read'
+    env:
+      NEEDS: ${{ needs.*.result }}
     steps:
+      - run: echo "NEEDS $NEEDS"
       - name: Create issue on failure
         uses: sigstore/sigstore-probers/.github/actions/open-workflow-issue@main
         with:

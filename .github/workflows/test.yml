@@ -19,7 +19,7 @@ jobs:
   create:
     runs-on: ubuntu-latest
     needs: [failing-job, succeeding-job]
-    if: failure()
+    if: always() && contains(needs.*.result, 'failure')
     permissions:
       issues: 'write'
       actions: 'read'

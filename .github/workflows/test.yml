@@ -21,7 +21,7 @@ jobs:
     needs: [succeeding-job2]
     steps:
       - run: |
-          false
+          true # test succeding?
 
   create:
     runs-on: ubuntu-latest

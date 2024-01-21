@@ -34,6 +34,7 @@ jobs:
       NEEDS:  ${{ toJSON(needs.*.result) }}
     steps:
       - run: echo "NEEDS $NEEDS"
+      - run: echo "BASEREF ${{ github.base_ref }}" 
       - name: Create issue on failure
         uses: sigstore/sigstore-probers/.github/actions/open-workflow-issue@main
         with:

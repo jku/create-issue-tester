@@ -8,7 +8,7 @@ runs:
       id: step1
       shell: bash
 
-    - run: false
+    - run: true
       id: step2
       shell: bash
 

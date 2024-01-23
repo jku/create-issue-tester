@@ -1,0 +1,22 @@
+name: 'fail composite test'
+description: 'Test Failures in composite actions'
+
+runs:
+  using: "composite"
+  steps:
+    - run: true
+      id: step1
+      shell: bash
+
+    - run: false
+      id: step2
+      shell: bash
+
+    - run: true
+      id: step3
+      shell: bash
+
+    - run: echo "FAILURE"
+      id: fail
+      if: failure()
+      shell: bash

@@ -16,7 +16,9 @@ runs:
       name: step3
       shell: bash
 
-    - run: echo "ALWAYS (succeeded? ${{ success() }})"
+    - run: |
+        echo "ALWAYS"
+        echo "${{ github.action_status }}"
       name: always
       if: always()
       shell: bash

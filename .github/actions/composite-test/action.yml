@@ -16,7 +16,13 @@ runs:
       id: step3
       shell: bash
 
+    - run: echo "ALWAYS"
+      id: always
+      if: always()
+      shell: bash
+
     - run: echo "FAILURE"
       id: fail
       if: failure()
       shell: bash
+

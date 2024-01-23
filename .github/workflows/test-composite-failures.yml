@@ -1,0 +1,10 @@
+name: Test composite failures
+
+on:
+  workflow_dispatch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/composite-test

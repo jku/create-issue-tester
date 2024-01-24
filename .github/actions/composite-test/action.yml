@@ -8,8 +8,6 @@ runs:
       name: step1
       shell: bash
 
-    - uses: ./.github/workflows/reusable.yml
-
     - run: false
       name: step2
       shell: bash

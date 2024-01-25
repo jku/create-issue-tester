@@ -7,5 +7,5 @@ runs:
     - uses: actions/github-script@main
       with: 
         script: |
-          console.log(github)
+          console.log(job)
           console.log(context)

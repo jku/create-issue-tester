@@ -4,27 +4,8 @@ description: 'Test Failures in composite actions'
 runs:
   using: "composite"
   steps:
-    - run: true
-      name: step1
-      shell: bash
-
-    - run: false
-      name: step2
-      shell: bash
-
-    - run: true
-      name: step3
-      shell: bash
-
-    - run: |
-        echo "ALWAYS"
-        echo "${{ github.action_status }}"
-      name: always
-      if: always()
-      shell: bash
-
-    - run: echo "FAILURE"
-      name: fail
-      if: failure()
-      shell: bash
-
+    - uses: actions/github-script@main
+      with: 
+        script: |
+          console.log(github)
+          console.log(context)

@@ -13,5 +13,5 @@ runs:
       with: 
         script: |
           console.log(${{ inputs.status }})
-          console.log(${{ jobs }})
+          console.log(${{ job }})
           console.log(context)

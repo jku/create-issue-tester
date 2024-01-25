@@ -2,8 +2,8 @@ name: 'fail composite test'
 description: 'Test Failures in composite actions'
 
 inputs:
-  status:    
-    description: 'status of the workflow'
+  success:
+    description: '"true" if workflow is successful'
     required: true
 
 runs:
@@ -11,8 +11,8 @@ runs:
   steps:
     - uses: actions/github-script@main
       env:
-        STATUS: ${{ inputs.status }}
+        SUCCESS: ${{ inputs.success }}
       with: 
         script: |
-          console.log("status:")
-          console.log(process.env.STATUS)
+          console.log("Success?")
+          console.log(process.env.SUCCESS)

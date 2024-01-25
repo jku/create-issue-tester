@@ -2,7 +2,9 @@ name: 'fail composite test'
 description: 'Test Failures in composite actions'
 
 inputs:
-  status:
+  status:    
+    description: 'status of the workflow'
+    required: true
 
 runs:
   using: "composite"
@@ -11,4 +13,5 @@ runs:
       with: 
         script: |
           console.log(${{ inputs.status }})
+          console.log(${{ jobs }})
           console.log(context)

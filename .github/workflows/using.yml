@@ -1,0 +1,8 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  use-reusable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/using.yml

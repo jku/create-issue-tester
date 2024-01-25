@@ -12,4 +12,4 @@ runs:
     - uses: actions/github-script@main
       with: 
         script: |
-          console.log("inputs: ${{ inputs }}")
+          console.log("status: ${{ inputs.status }}")

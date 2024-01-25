@@ -1,11 +1,14 @@
 name: 'fail composite test'
 description: 'Test Failures in composite actions'
 
+inputs:
+  status:
+
 runs:
   using: "composite"
   steps:
     - uses: actions/github-script@main
       with: 
         script: |
-          console.log(job)
+          console.log(${{ inputs.status }})
           console.log(context)

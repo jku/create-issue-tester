@@ -13,5 +13,3 @@ runs:
       with: 
         script: |
           console.log(${{ inputs }})
-          console.log(${{ job }})
-          console.log(context)

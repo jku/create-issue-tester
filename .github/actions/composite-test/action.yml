@@ -10,6 +10,9 @@ runs:
   using: "composite"
   steps:
     - uses: actions/github-script@main
+      env:
+        STATUS: ${{ inputs.status }}
       with: 
         script: |
-          console.log("status: ${{ inputs.status }}")
+          console.log("status:")
+          console.log(process.env.STATUS)

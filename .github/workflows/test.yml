@@ -1,7 +1,8 @@
 name: Test create-issue and close-issue
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  push:
 
 jobs:
   succeeding-job:

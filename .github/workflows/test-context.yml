@@ -9,6 +9,6 @@ jobs:
         with:
           script: |
             console.log("context test")
-            console.log($context)
+            console.log(context)
             console.log(`context.workflow ${context.workflow}`)
             

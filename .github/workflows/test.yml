@@ -69,7 +69,7 @@ jobs:
       - name: Create issue on failure
         uses: jku/sigstore-probers/.github/actions/open-workflow-issue@issue-workflows-fix-path-use
         with:
-          comment_for_each_failure: true
+          comment_for_each_failure: false
 
   close:
     runs-on: ubuntu-latest

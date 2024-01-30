@@ -37,9 +37,9 @@ jobs:
         with: 
           name: "github-pages"
       - run: |
-          tar --extract --file artifact.tar 
-          rm artifact.tar
-          ls
+          mkdir publish
+          tar --extract --file artifact.tar --directory publish 
+          ls publish
 
       - uses: google-github-actions/auth@5a50e581162a13f4baa8916d01180d2acbc04363 # v2.1.0
         id: auth
@@ -53,10 +53,9 @@ jobs:
         with:
           project_id: python-tuf-kms
 
-      - name: Login?
-        run: |
-          gcloud auth list
-
       - name: sync
         run: |
-          gcloud storage cp --cache-control=no-store -r ./ gs://jku-testbucket/
+          # upload
+          gcloud storage cp --cache-control=no-store -r ./publish-tmp gs://jku-testbucket/
+          # then rename
+          gcloud storage mv gs://jku-testbucket/publish-tmp gs://jku-testbucket/publish 

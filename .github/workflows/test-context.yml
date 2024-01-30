@@ -52,7 +52,7 @@ jobs:
           python -m sigstore --staging sign testfile
           echo "verify"
           python -m sigstore --staging verify github \
-              --cert-identity https://github.com/jku/create-issue-tester/.github/workflows/test-context.yml@refs/heads/main \
+              --cert-identity https://github.com/$GITHUB_WORKFLOW_REF \
               testfile
 
   test:

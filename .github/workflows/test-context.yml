@@ -36,6 +36,5 @@ jobs:
           name: "github-pages"
       - run: |
           mkdir publish
-          ls
-          tar --extract --directory=publish artifact.tar
+          tar --extract --file artifact.tar --directory=publish 
           ls publish/

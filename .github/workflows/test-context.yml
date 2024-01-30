@@ -56,3 +56,7 @@ jobs:
       - name: Login?
         run: |
           gcloud auth list
+
+      - name: sync
+        run: |
+          gcloud storage cp --cache-control=no-store -r ./ gs://jku-testbucket/

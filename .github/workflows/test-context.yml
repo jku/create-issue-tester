@@ -44,7 +44,7 @@ jobs:
           SITE_PACKAGES=$(pip show sigstore | sed -n "s/^Location: //p")
           sed -ie "s#STAGING_TUF_URL = .*#STAGING_TUF_URL = \"https://sigstore.github.io/root-signing-staging/\"#" "$SITE_PACKAGES/sigstore/_internal/tuf.py"
 
-          sign, then verify using the Actions oidc identity
+          # sign, then verify using the Actions oidc identity
           echo "signing"
           python -m sigstore --staging sign testfile
           echo "verify"

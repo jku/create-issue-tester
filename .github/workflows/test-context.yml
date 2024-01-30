@@ -27,6 +27,29 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
         
+  sign:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write'
+    steps:
+      - uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
+        with:
+          python-version: '3.11'
+
+      - run: |
+          touch testfile
+          pip install sigstore
+
+          # tweak sigstore source to use our TUF URL 
+          SITE_PACKAGES=$(pip show sigstore | sed -n "s/^Location: //p")
+          sed -e "s#STAGING_TUF_URL = .*#STAGING_TUF_URL = \"https://sigstore.github.io/root-signing-staging/\"#" "$SITE_PACKAGES/sigstore/_internal/tuf.py"
+
+          sign, then verify using the Actions oidc identity
+          python -m sigstore --staging sign testfile
+          python -m sigstore --staging verify github \
+              --cert-identity https://github.com/jku/create-issue-tester/.github/workflows/test.yml
+              testfile
+
   test:
     runs-on: ubuntu-latest
     needs: build

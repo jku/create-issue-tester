@@ -36,7 +36,7 @@ jobs:
           name: "github-pages"
       - run: |
           PUBDIR=$(mktemp -d --tmpdir=./)
-          unzip -p github-pages.zip
+          unzip github-pages.zip
           ls
           file artifact.tar
           unzip -p github-pages.zip | tar --extract --directory=$PUBDIR

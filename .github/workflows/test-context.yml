@@ -38,3 +38,20 @@ jobs:
           tar --extract --file artifact.tar 
           rm artifact.tar
           ls
+
+      - uses: google-github-actions/auth@5a50e581162a13f4baa8916d01180d2acbc04363 # v2.1.0
+        id: auth
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: 'projects/843741030650/locations/global/workloadIdentityPools/testpool/providers/testprovider'
+          service_account: 'testsa@python-tuf-kms.iam.gserviceaccount.com'
+          create_credentials_file: true
+
+      - uses: google-github-actions/setup-gcloud@98ddc00a17442e89a24bbf282954a3b65ce6d200 # v2.1.0
+        with:
+          project_id: python-tuf-kms
+
+      - name: Login
+        run: |
+          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+          gcloud auth list

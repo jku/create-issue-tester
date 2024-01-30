@@ -38,20 +38,19 @@ jobs:
 
       - name: Install sigstore-python, tweak it to use the published TUF repository
         run: |
-          touch testfile
           pip install sigstore
 
           # tweak sigstore source to use our TUF URL 
           SITE_PACKAGES=$(pip show sigstore | sed -n "s/^Location: //p")
-          sed -ie "s#STAGING_TUF_URL = .*#STAGING_TUF_URL = \"https://sigstore.github.io/root-signing-staging/\"#" "$SITE_PACKAGES/sigstore/_internal/tuf.py"
+          PUBLISH_URL="https://sigstore.github.io/root-signing-staging/"
+          sed -ie "s#^STAGING_TUF_URL = .*#STAGING_TUF_URL = \"$PUBLISH_URL\"#" "$SITE_PACKAGES/sigstore/_internal/tuf.py"
 
       - name: Test published repository with a Sigstore client
         run: |
           # sign, then verify using the Actions oidc identity
-          echo "signing"
+          touch testfile
           python -m sigstore --staging sign testfile
-          echo "verify"
-          python -m sigstore --staging verify github \
+          python -m sigstore -v --staging verify github \
               --cert-identity $GITHUB_SERVER_URL/$GITHUB_WORKFLOW_REF \
               testfile
 

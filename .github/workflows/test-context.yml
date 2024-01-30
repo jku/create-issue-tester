@@ -49,7 +49,7 @@ jobs:
         run: |
           # sign, then verify using the Actions oidc identity
           touch testfile
-          python -m sigstore --staging sign testfile
+          python -m sigstore -vvv --staging sign testfile
           python -m sigstore -vvv --staging verify github \
               --cert-identity $GITHUB_SERVER_URL/$GITHUB_WORKFLOW_REF \
               testfile

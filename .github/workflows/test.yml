@@ -54,7 +54,7 @@ jobs:
       actions: 'read'
     steps:
       - name: Create issue on failure
-        uses: jku/sigstore-probers/.github/actions/open-workflow-issue@issue-workflows-fix-path-use
+        uses: jku/sigstore-probers/.github/actions/open-workflow-issue@avoid-context-payload
         with:
           comment_for_each_failure: true
 
@@ -67,7 +67,7 @@ jobs:
       actions: 'read'
     steps:
       - name: Create issue on failure
-        uses: jku/sigstore-probers/.github/actions/open-workflow-issue@issue-workflows-fix-path-use
+        uses: jku/sigstore-probers/.github/actions/open-workflow-issue@avoid-context-payload
         with:
           comment_for_each_failure: false
 
@@ -80,4 +80,4 @@ jobs:
       actions: 'read'
     steps:
       - name: Close issue
-        uses: jku/sigstore-probers/.github/actions/close-workflow-issue@issue-workflows-fix-path-use
+        uses: jku/sigstore-probers/.github/actions/close-workflow-issue@avoid-context-payload

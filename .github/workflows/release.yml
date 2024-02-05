@@ -1,0 +1,16 @@
+name: test release with env
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions: {}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - run: echo OK
